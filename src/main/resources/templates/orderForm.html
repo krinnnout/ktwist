@@ -1,0 +1,47 @@
+<!doctype html>
+<html   xmlns = "http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Krinu Kebab</title>
+    <link rel="stylesheet" th:href="@{../static/styles.css}">
+</head>
+<body>
+<h1>Comandă kebabul creat de tine!</h1>
+<img th:src="@{/images/logo2.jpg}" alt="logo" width="128 px" height="128 px"/>
+<form method="POST" th:action="@{/orders}" th:object="${kebabOrder}">
+    <ul>
+        <li th:each="kebab : ${kebabOrder.kebabList}">
+            <span th:text="${kebab.name}"></span>
+        </li>
+    </ul>
+    <h3>Adresa de livrare:</h3>
+    <label for="deliveryName">Numele:</label>
+    <input type="text" th:field="*{deliveryName}" id="deliveryName">
+    <br>
+
+    <label for="deliveryStreet">Strada:</label>
+    <input type="text" th:field="*{deliveryStreet}" id="deliveryStreet">
+    <br>
+
+    <h3>Metoda de achitare:</h3>
+    <label for="ccNumber">Numărul cardului:</label>
+    <input type="text" th:field="*{ccNumber}" id="ccNumber">
+    <br>
+
+    <label for="ccExpiration">Data de expirare</label>
+    <input type="text" th:field="*{ccExpiration}" id="ccExpiration">
+    <br>
+
+    <label for="ccCVV">CVV</label>
+    <input type="text" th:field="*{ccCVV}" id="ccCVV">
+    <br>
+
+    <input type="submit" value="Efectuează comanda">
+</form>
+</body>
+</html>
